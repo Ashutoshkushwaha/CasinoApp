@@ -1,0 +1,70 @@
+﻿@model CasinoAppAdmin.Models.UserRegistrationModel
+
+<div>
+    @using (Html.BeginForm("RegisterUser", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal" style="border:groove; margin: 8%; margin-bottom: 0;">
+            <h4 style="margin-left: 41%; padding-top: 8px">Register Your Account</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div style="margin-left: 28%">
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Name</label>
+                    @*@Html.LabelFor(Model => Model.Customer_Name, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Customer_Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Your Full Name" } })
+                        @Html.ValidationMessageFor(model => model.Customer_Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Date of Birth</label>
+                    @*@Html.LabelFor(model => model.DOB, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @type = "Date", @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Contact Number</label>
+                    @*@Html.LabelFor(model => model.Contact_Number, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Contact_Number, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Your Contact Number" } })
+                        @Html.ValidationMessageFor(model => model.Contact_Number, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Email Id</label>
+                    @*@Html.LabelFor(model => model.Email_Id, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Email_Id, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Your Email ID" } })
+                        @Html.ValidationMessageFor(model => model.Email_Id, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Identity Proof</label>
+                    <div class="col-md-10">
+                        <input type="file" name="ImageData" id="ImageData" value="data" onchange="fileCheck(this);" required />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-primary" style="width: 20%"/>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    }
+</div>
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

@@ -1,0 +1,32 @@
+﻿@model PagedList.IPagedList<CasinoAppAdmin.Models.UserRegistrationModel>
+@using PagedList.Mvc;
+
+<div style="margin-left: 20%">
+    <div class="card" style="width: 80rem; margin-top: 10%">
+        @using (Ajax.BeginForm("GetFilteredUsers", new AjaxOptions { HttpMethod = "post", UpdateTargetId = "userDetails" }))
+        {
+            <div>
+                <label>Name</label>
+                <input class="form-control" type="text" placeholder="Search By Name" name="userName" id="userName" />
+                <div class="pull-right form-inline" style="margin-top:-60px">
+                    <label>Contact</label>
+                    <input class="form-control" type="text" placeholder="Search By Contact" name="userContact" id="userContact" />
+                </div>
+            </div>
+            <br />
+            <div>
+                <label>Email Id</label>
+                <input class="form-control" type="text" placeholder="Search By Email ID" name="userEmail" id="userEmail" />
+                <div class="pull-right form-inline" style="margin-top:-60px">
+                    <button class="btn btn-primary" type="submit">search</button>
+                </div>
+            </div>
+        }
+    </div>
+    
+</div>
+<div style="margin-top: 4%; width: 80%; margin-left: 10%">
+    
+    @Html.Partial("GetAllUsers", Model)
+</div>  
+

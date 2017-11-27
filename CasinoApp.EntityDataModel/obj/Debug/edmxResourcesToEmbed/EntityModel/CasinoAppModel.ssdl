@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CasioAppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CustomerList">
+    <Key>
+      <PropertyRef Name="Customer Id" />
+    </Key>
+    <Property Name="Customer Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Customer Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DOB" Type="date" Nullable="false" />
+    <Property Name="Contact Number" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="Email Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Copy of Id" Type="image" Nullable="false" />
+    <Property Name="Account Balance" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Blocked Amount" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Unique User Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Function Name="SearchCustomer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CustomerName" Type="nvarchar" Mode="In" />
+    <Parameter Name="Contact" Type="numeric" Mode="In" />
+    <Parameter Name="EmailId" Type="nvarchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="CasioAppModelStoreContainer">
+    <EntitySet Name="CustomerList" EntityType="Self.CustomerList" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

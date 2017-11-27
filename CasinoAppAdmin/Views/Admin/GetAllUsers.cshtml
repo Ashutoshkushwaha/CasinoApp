@@ -1,0 +1,103 @@
+﻿@model PagedList.IPagedList<CasinoAppAdmin.Models.UserRegistrationModel>
+@using PagedList.Mvc;
+@{
+   int counter = 1;
+}
+<style>
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+</style>
+
+<div>
+
+    <div id="userDetails">
+        <table class="table" border="1" style="border:groove; ">
+
+            <tr>
+                <td align="center" style="font-weight: 600; font-size:16px">
+                    S.No
+                </td>
+                <td align="center" style="font-weight: 600; font-size:16px">
+                    Name
+                </td>
+                <td align="center" style="font-weight: 600; font-size:16px">
+                    DOB
+                </td>
+                <td align="center" style="font-weight: 600; font-size:16px">
+                    Contact Number
+                </td>
+                <td align="center" style="font-weight: 600; font-size:16px">
+                    Email Id
+                </td>
+                <td align="center" style="font-weight: 600; font-size:16px">
+                    Account Balance
+                </td>
+                <td align="center" style="font-weight: 600; font-size:16px">
+                    Recharge
+                </td>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td align="center">
+                        @counter
+                    </td>
+                    <td align="center">
+                        @Html.DisplayFor(modelItem => item.Customer_Name)
+                    </td>
+                    <td align="center">
+                        @item.DOB.ToShortDateString()
+
+                    </td>
+                    <td align="center">
+                        @Html.DisplayFor(modelItem => item.Contact_Number)
+                    </td>
+                    <td align="center">
+                        @Html.DisplayFor(modelItem => item.Email_Id)
+                    </td>
+                    <td align="center">
+                        @Html.DisplayFor(modelItem => item.Account_Balance)
+                    </td>
+                    <td align="center">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#@item.Customer_Id">+</button>
+                        <div id="@item.Customer_Id" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                                @using (Ajax.BeginForm("Recharge", new AjaxOptions { HttpMethod = "post" }))
+                                {
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Recharge Balance</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="hidden">
+                                                <input class="form-control" type="text" value="@item.Customer_Id" name="CustomerId" id="CustomerId" />
+                                            </div>
+                                            <label>Amount</label>
+                                            <input class="form-control" type="number" step="0.01" min="1" name="RechargeAmount" placeholder="Enter Amount" id="RechargeAmount" />
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" , class="btn btn-primary">Recharge</button>
+
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                                counter += 1;
+            }
+
+
+        </table>
+
+    </div>
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("UserList",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</div>

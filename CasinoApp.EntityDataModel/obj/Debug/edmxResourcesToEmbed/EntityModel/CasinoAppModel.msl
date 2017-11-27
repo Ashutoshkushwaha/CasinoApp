@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CasioAppModelStoreContainer" CdmEntityContainer="CasioAppEntities">
+    <EntitySetMapping Name="CustomerLists">
+      <EntityTypeMapping TypeName="CasioAppModel.CustomerList">
+        <MappingFragment StoreEntitySet="CustomerList">
+          <ScalarProperty Name="Customer_Id" ColumnName="Customer Id" />
+          <ScalarProperty Name="Customer_Name" ColumnName="Customer Name" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="Contact_Number" ColumnName="Contact Number" />
+          <ScalarProperty Name="Email_Id" ColumnName="Email Id" />
+          <ScalarProperty Name="Copy_of_Id" ColumnName="Copy of Id" />
+          <ScalarProperty Name="Account_Balance" ColumnName="Account Balance" />
+          <ScalarProperty Name="Blocked_Amount" ColumnName="Blocked Amount" />
+          <ScalarProperty Name="Unique_User_Id" ColumnName="Unique User Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SearchCustomer" FunctionName="CasioAppModel.Store.SearchCustomer">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CasioAppModel.SearchCustomer_Result">
+          <ScalarProperty Name="Customer_Id" ColumnName="Customer Id" />
+          <ScalarProperty Name="Customer_Name" ColumnName="Customer Name" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="Contact_Number" ColumnName="Contact Number" />
+          <ScalarProperty Name="Email_Id" ColumnName="Email Id" />
+          <ScalarProperty Name="Copy_of_Id" ColumnName="Copy of Id" />
+          <ScalarProperty Name="Account_Balance" ColumnName="Account Balance" />
+          <ScalarProperty Name="Blocked_Amount" ColumnName="Blocked Amount" />
+          <ScalarProperty Name="Unique_User_Id" ColumnName="Unique User Id" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>
